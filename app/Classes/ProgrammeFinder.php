@@ -1,6 +1,6 @@
-<?php
+<?php namespace App\Classes;
 
-class ProgrammeClass {
+class ProgrammeFinder {
 
   public function readProgrammesDataFile() {
     // https://www.w3schools.com/php/php_file_open.asp
@@ -11,6 +11,10 @@ class ProgrammeClass {
     //$arr = var_dump(json_decode($data, true));
     $json_data = json_decode($string, true);
     return $json_data;
+  }
+
+  public function hello() {
+    echo 'SAY HELLO!';
   }
 
   public function extractProgrammes($json_data) {
@@ -78,5 +82,3 @@ class ProgrammeClass {
 }
 
 ?>
-
-
