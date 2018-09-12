@@ -11,6 +11,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Classes\ProgrammeFinder;
+use Illuminate\Support\Facades\Input;
+
 
 class ProgrammeController extends Controller
 {
@@ -32,12 +34,29 @@ class ProgrammeController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($string)
+    public function show()
     {
+        echo "HELLO THERE SHOW ->>  ";
+        return view('programmes.show');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function query()
+    {
+        $category = Input::get('search', 'default search');
+        /*
+        echo "HELLO THERE QUERY RECEIVED ->> $string ";
         $ProgrammeFinder = new ProgrammeFinder($string);
         $results = $ProgrammeFinder->hello();
         //
-        echo "HELLO THERE SHOW ->> $results ";
-        return view('programmes.show');
+        echo "HELLO THERE QUERY RESULT ->> $results ";
+        */
+        echo "QUERY $category";
+        return view('programmes.query');
     }
 }
