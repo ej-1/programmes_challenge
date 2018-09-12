@@ -2,9 +2,18 @@
 
 class ProgrammeFinder {
 
-  public function readProgrammesDataFile() {
+  public function findProgrammes($file, $search) {
+    $json = $this->readProgrammesDataFile($file);
+    $programmes = $this->extractProgrammes($json);
+    $slice_titles = $this->extractSliceTitles($programmes); // => ['archersomnibusthe', 'archersthe']
+    $matching_title_indexes = $this->matchTitles($slice_titles, $search); // => [0, 7]
+    $programmes = $this->findProgrammesByIndex($programmes, $indexes);
+    return $programmes;
+  }
+
+  public function readProgrammesDataFile($file) {
     // https://www.w3schools.com/php/php_file_open.asp
-    $file = fopen("./source-data.txt", "r") or die("Unable to open file!");
+    $file = fopen("./Data/programme_source_data.txt", "r") or die("Unable to open file!");
 
     // https://www.tutorialrepublic.com/php-tutorial/php-json-parsing.php
     $string = fread($file,filesize("source-data.txt"));
@@ -41,7 +50,7 @@ class ProgrammeFinder {
     return $slice_titles;
   }
 
-  public function matchTitles($slice_titles, $query) {
+  public function matchTitles($slice_titles, $search) {
     echo "matches ";
     $matching_title_indexes = array();
     $arrlength = count($slice_titles);
@@ -51,8 +60,8 @@ class ProgrammeFinder {
       echo "<br>";
       //print_r($slice_titles[$x]);
       echo "<br>";
-      //echo $query;
-      if (strpos($slice_titles[$x], $query) !== false) { // change to true later.
+      //echo $search;
+      if (strpos($slice_titles[$x], $search) !== false) { // change to true later.
         echo "IT IS TRUE";
         // array_push($matching_titles, $slice_titles[$x]);
         array_push($matching_title_indexes, $x); // HERE WE PUSH THE INDEX INSTEAD OF THE MATCHING TITLE.
@@ -69,12 +78,12 @@ class ProgrammeFinder {
   }
 
   
-  public function findProgrammesByIndex($programmes_data, $indexes) {
+  public function findProgrammesByIndex($programmes, $indexes) {
     $programmes = array();
     $arrlength = count($indexes);
 
     for($x = 0; $x < $arrlength; $x++) {
-      $matching_programme = $programmes_data[$indexes[$x]];
+      $matching_programme = $programmes[$indexes[$x]];
       array_push($programmes, $matching_programme);
     }
     return $programmes;
