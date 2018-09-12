@@ -38,5 +38,6 @@ class ProgrammeController extends Controller
         $results = $ProgrammeFinder->hello();
         //
         echo "HELLO THERE SHOW ->> $results ";
+        return view('programmes.show');
     }
 }
