@@ -81,6 +81,8 @@
 
 -   The DataFetcherWorker should be called from somewhere. An idea would be to run it periodically to fetch the data and save it on the the server side and probably not for each user request.
 
+- Overall, there is a lack of error handling. In the app in general, but also e.g. in the ProgrammeFinder class. There shoud be some error thrown if keys don't match the JSON or file is missing for example
+
 ### forms
 
 -   make sure to ahve params in form url also.
