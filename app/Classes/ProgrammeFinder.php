@@ -5,39 +5,39 @@ class ProgrammeFinder {
   public function findProgrammes($file, $search) {
     $json = $this->readProgrammesDataFile($file);
     $programmes = $this->extractProgrammes($json);
-    $slice_titles = $this->extractSliceTitles($programmes); // => ['archersomnibusthe', 'archersthe']
-    $matching_title_indexes = $this->matchTitles($slice_titles, $search); // => [0, 7]
+    $titles = $this->extractSliceTitles($programmes); // => ['archersomnibusthe', 'archersthe']
+    $matching_title_indexes = $this->matchTitles($titles, $search); // => [0, 7]
     $programmes = $this->findProgrammesByIndex($programmes, $matching_title_indexes);
     return $programmes;
   }
 
-  public function readProgrammesDataFile($file) {
+  private function readProgrammesDataFile($file) {
     $file = fopen("../app/Data/programme_source_data.txt", "r") or die("Unable to open file!");
     $string = fread($file,filesize("../app/Data/programme_source_data.txt"));
     $json_data = json_decode($string, true);
     return $json_data;
   }
 
-  public function extractProgrammes($json_data) {
+  private function extractProgrammes($json_data) {
     $programmes = $json_data['atoz']['tleo_titles'];
     return $programmes;
   }
 
-  public function extractSliceTitles($programmes) {
-    $slice_titles = array();
+  private function extractSliceTitles($programmes) {
+    $titles = array();
     $arrlength = count($programmes);
 
     for($x = 0; $x < $arrlength; $x++) {
-      array_push($slice_titles, $programmes[$x]['slice_title']);
+      array_push($titles, $programmes[$x]['title']);
     }
-    return $slice_titles;
+    return $titles;
   }
 
-  public function matchTitles($slice_titles, $search) {
+  private function matchTitles($titles, $search) {
     $matching_title_indexes = array();
-    $arrlength = count($slice_titles);
+    $arrlength = count($titles);
     for($x = 0; $x < $arrlength; $x++) {
-      if (strpos($slice_titles[$x], $search) !== false) { // change to true later.
+      if (strpos(strtolower($titles[$x]), strtolower($search)) !== false) { // change to true later.
         array_push($matching_title_indexes, $x); // HERE WE PUSH THE INDEX INSTEAD OF THE MATCHING TITLE.
       }
     }
@@ -45,7 +45,7 @@ class ProgrammeFinder {
   }
 
   
-  public function findProgrammesByIndex($programmes, $indexes) {
+  private function findProgrammesByIndex($programmes, $indexes) {
     $matching_programmes = array();
     $arrlength = count($indexes);
 
