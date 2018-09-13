@@ -5,7 +5,7 @@ class ProgrammeFinder {
   public function findProgrammes($file, $search) {
     $json = $this->readProgrammesDataFile($file);
     $programmes = $this->extractProgrammes($json);
-    $titles = $this->extractSliceTitles($programmes); // => ['archersomnibusthe', 'archersthe']
+    $titles = $this->extractTitles($programmes); // => ['archersomnibusthe', 'archersthe']
     $matching_title_indexes = $this->matchTitles($titles, $search); // => [0, 7]
     $programmes = $this->findProgrammesByIndex($programmes, $matching_title_indexes);
     return $programmes;
@@ -23,7 +23,7 @@ class ProgrammeFinder {
     return $programmes;
   }
 
-  private function extractSliceTitles($programmes) {
+  private function extractTitles($programmes) {
     $titles = array();
     $arrlength = count($programmes);
 
