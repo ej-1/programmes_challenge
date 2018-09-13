@@ -25,7 +25,6 @@ class ProgrammeController extends Controller
      */
     public function index()
     {
-      echo "HELLO THERE INDEX ->> ";
         //
     }
 
@@ -37,7 +36,6 @@ class ProgrammeController extends Controller
      */
     public function show()
     {
-        echo "HELLO THERE SHOW ->>  ";
         return view('programmes.show');
     }
 
