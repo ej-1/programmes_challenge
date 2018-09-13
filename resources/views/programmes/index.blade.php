@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="<?php echo e(app()->getLocale()); ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,13 +65,24 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            <?php if(Route::has('login')): ?>
+                <div class="top-right links">
+                    <?php if(auth()->guard()->check()): ?>
+                        <a href="<?php echo e(url('/home')); ?>">Home</a>
+                    <?php else: ?>
+                        <a href="<?php echo e(route('login')); ?>">Login</a>
+                        <a href="<?php echo e(route('register')); ?>">Register</a>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    PROGRAMMES INDEX
                 </div>
 
                 <div class="links">
-                    Go to http://localhost:8000/programmes/show for the app.
+                    <a href="https://laravel.com/docs">Documentation</a>
                 </div>
             </div>
         </div>

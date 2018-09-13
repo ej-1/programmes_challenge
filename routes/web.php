@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Add CSRF protection later. https://laravelcollective.com/docs/5.0/html#csrf-protection
+Route::get('programmes/show', 'ProgrammeController@show')->name('show');
+Route::get('programmes/query/{search}', 'ProgrammeController@query')->name('query');
