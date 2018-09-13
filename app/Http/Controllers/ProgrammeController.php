@@ -50,19 +50,8 @@ class ProgrammeController extends Controller
     public function query()
     {
         $search = Input::get('search', 'default search');
-        /*
-        echo "HELLO THERE QUERY RECEIVED ->> $string ";
-
-        //
-        echo "HELLO THERE QUERY RESULT ->> $results ";
-        */
         $ProgrammeFinder = new ProgrammeFinder();
-        //$results = $ProgrammeFinder->hello();
-        $results = $ProgrammeFinder->findProgrammes("somefile", $search);
-        print_r($results);
-        echo "QUERY $search";
-        return View::make('programmes.query')->with('programmes', $results);
-        //return view('programmes.query', $results);
-        
+        $results = $ProgrammeFinder->findProgrammes("somefile", $search); // add real filepath here
+        return View::make('programmes.query')->with('programmes', $results);        
     }
 }
