@@ -20,47 +20,42 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
+            .programme-results-container {
+                width: 35%;
+                background: #252424;
             }
 
-            .flex-center {
-                align-items: center;
+            .programme-container {
+                width: 100%;
+                height: 15%;
                 display: flex;
-                justify-content: center;
+                padding: 20px;
             }
 
-            .position-ref {
-                position: relative;
+            .programme-results-container hr {
+                width: 90%;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
+            .programme-img-container {
+                width: 150px;
+                padding: 10px 25px 10px 10px;
             }
 
-            .content {
-                text-align: center;
+            .programme-img-container img {
+                max-width: 100%;
+                max-height: 100%;
             }
 
-            .title {
-                font-size: 84px;
+            .programme-text-container {
+                height: 25%;
+                flex: 1;
+                max-width: 50%;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
+            .programme-text-container p {
+                color: #f5f5f5;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body>
@@ -79,7 +74,25 @@
             <div class="content">
                 <div class="title m-b-md">
                     Programme finder (QUERY)
+                    <p>Hello, <?php //print_r($programmes); ?></p>
                 </div>
+
+                <div class="programme-results-container">
+                    @foreach ($programmes as $programme)
+                        <div class="programme-container">
+                            <div class="programme-img-container">
+                                <img src={{ "https://ichef.bbci.co.uk/images/ic/480x270/".$programme['programme']['image']['pid'].'.jpg' }}>
+                            </div>
+                            <div class="programme-text-container">
+                                <p><strong>{{ $programme['title'] }}</strong></p>
+                                <p>{{ $programme['programme']['short_synopsis'] }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                    @endforeach
+                </div>
+
+
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
