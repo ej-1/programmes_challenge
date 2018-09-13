@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use View;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -48,15 +49,20 @@ class ProgrammeController extends Controller
      */
     public function query()
     {
-        $category = Input::get('search', 'default search');
+        $search = Input::get('search', 'default search');
         /*
         echo "HELLO THERE QUERY RECEIVED ->> $string ";
-        $ProgrammeFinder = new ProgrammeFinder($string);
-        $results = $ProgrammeFinder->hello();
+
         //
         echo "HELLO THERE QUERY RESULT ->> $results ";
         */
-        echo "QUERY $category";
-        return view('programmes.query');
+        $ProgrammeFinder = new ProgrammeFinder();
+        //$results = $ProgrammeFinder->hello();
+        $results = $ProgrammeFinder->findProgrammes("somefile", $search);
+        print_r($results);
+        echo "QUERY $search";
+        return View::make('programmes.query')->with('programmes', $results);
+        //return view('programmes.query', $results);
+        
     }
 }
