@@ -72,11 +72,6 @@
             <?php endif; ?>
 
             <div class="content">
-                <div class="title m-b-md">
-                    Programme finder (QUERY)
-                    <p>Hello, <?php //print_r($programmes); ?></p>
-                </div>
-
                 <div class="programme-results-container">
                     @foreach ($programmes as $programme)
                         <div class="programme-container">
@@ -90,12 +85,6 @@
                         </div>
                         <hr>
                     @endforeach
-                </div>
-
-
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
                 </div>
             </div>
         </div>
