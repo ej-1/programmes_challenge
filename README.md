@@ -18,7 +18,7 @@
 
 -   switch to useing BEM. Use SASS.
 
--   Fix this bug. The JSON output is different sometimes for images. Sometimes it is programme['programme']['image']['pid'] and sometimes it is programme['programme']['pid']. I added a if statement as temporary fix, just prevent things from crashing. The better solution is to conform the JSON before so it all programme objects are uniform. There might be other bugs cause for other attributes as well.
+-   Fix this bug. The JSON output is different sometimes for images. Sometimes it is programme['programme']['image']['pid'] and sometimes it is programme['programme']['pid']. I added an if statement as a temporary fix, just to prevent things from crashing. The better solution is to conform the JSON before so all programme objects are uniform. There might be other bugs caused by querying other attributes as well.
 
 ```
     <div class="programme-img-container">
@@ -56,7 +56,13 @@
     </div>
 ```
 
--   Right now two views are used for querying programmes and displaying them. This should be one view where if possible in Laravel, use AJAX to render a new partial with the results without needing to reload the page. Something simple like that might do the trick.
+-   Right now two views are used for querying programmes and displaying them. This should be one view where if possible in Laravel. Use AJAX to render a new partial with the results without needing to reload the page.
+
+*   Separate CSS from view files into separate files. Use SASS and compile it to CSS.
+
+*   A specified result was the auto-suggest feature. I would have used JavaScript to put an event listener on the input field to listen for the keydown event and then triggered the form to be submitted.
+
+*   Submitting form is done by clicking a submit form. Not sure if desired effect is that submission happen when pushing enter button on keyboard. Would have added an event listener for that. Something simple like that might help to submit the form onKeyDown or pushing enter.
 
 ```
     const submitForm = (id) => {;
@@ -65,17 +71,11 @@
     }
 ```
 
--   Separate CSS from view files into separate files. Use SASS and compile it to SASS.
-
--   A specified result was the auto-suggest feature. I would have used JavaScript to put an event listener on the input field to listen for the keydown event and then triggered the form to be submitted.
-
--   Submitting form is done by clicking a submit form. Not sure if desired effect is that submission happen when pushing enter button on keyboard. Would have added an event listener for that.
-
 -   Remove unnecessary files in app that was created when generating app.
 
 -   Tests of course. Unit test primarily and a integration test possibly. This was not specified though.
 
--   There were some interesting features to implement CSRF protection which would have been good.
+-   There were some interesting features to implement CSRF protection which would have been good. Did not have time to conside XSS and what tools there are with Laravel that can help with tihs.
 
 -   Added some classes DataFetcher, DataSaver and DataFetcherWorker which I'm not sure works now, but gives some idea on how I code. Single resposibility, encapsulation, small reusable methods, documentation where needed (preferably where the output of a method is unclear), dependency injection etc.
 
@@ -86,3 +86,7 @@
 #### CSS
 
 -   The CSS I have written can be found in resources/views/programmes/query.blade.php.
+
+#### PS
+
+I would like to point out that I did not have any prior experience using PHP or Laravel. This is something I had to learn specifically for this challenge. I have experience with Ruby and Ruby on Rails which helped though.
