@@ -37,6 +37,25 @@
 
 -   The form for rendering the program results should be a separate partial. However, due to time limitation I won't be able to do that.
 
+````
+    <div class="programme-results-container">
+        @foreach ($programmes as $programme)
+            <div class="programme-container">
+                <div class="programme-img-container">
+                    @if (array_key_exists('image', $programme['programme']))
+                        <img src={{ "https://ichef.bbci.co.uk/images/ic/480x270/".$programme['programme']['image']['pid'].'.jpg' }}>
+                    @endif
+                </div>
+                <div class="programme-text-container">
+                    <p><strong>{{ $programme['title'] }}</strong></p>
+                    <p>{{ $programme['programme']['short_synopsis'] }}</p>
+                </div>
+            </div>
+            <hr>
+        @endforeach
+    </div>
+```
+
 -   Right now two views are used for querying programmes and displaying them. This should be one view where if possible in Laravel, use AJAX to render a new partial with the results without needing to reload the page. Something simple like that might do the trick.
 
 ```
@@ -66,3 +85,4 @@
 
 -   make sure to ahve params in form url also.
     `echo Form::open(array('url' => 'programmes/query/{string}', 'method' => 'get'));`
+````
