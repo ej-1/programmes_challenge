@@ -18,33 +18,17 @@ use Illuminate\Support\Facades\Input;
 class ProgrammeController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show()
     {
         return view('programmes.show');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function query()
     {
         $search = Input::get('search', 'default search');
