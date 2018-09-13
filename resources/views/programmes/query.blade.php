@@ -57,6 +57,7 @@
             }
 
         </style>
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -76,7 +77,9 @@
                     @foreach ($programmes as $programme)
                         <div class="programme-container">
                             <div class="programme-img-container">
-                                <img src={{ "https://ichef.bbci.co.uk/images/ic/480x270/".$programme['programme']['image']['pid'].'.jpg' }}>
+                                @if (array_key_exists('image', $programme['programme']))
+                                    <img src={{ "https://ichef.bbci.co.uk/images/ic/480x270/".$programme['programme']['image']['pid'].'.jpg' }}>
+                                @endif
                             </div>
                             <div class="programme-text-container">
                                 <p><strong>{{ $programme['title'] }}</strong></p>
