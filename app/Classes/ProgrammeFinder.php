@@ -12,7 +12,7 @@ class ProgrammeFinder {
   }
 
   private function readProgrammesDataFile($file) {
-    $file = fopen("../app/Data/programme_source_data.txt", "r") or die("Unable to open file!");
+    $file = fopen($file, "r") or die("Unable to open file!");
     $string = fread($file,filesize("../app/Data/programme_source_data.txt"));
     $json_data = json_decode($string, true);
     return $json_data;

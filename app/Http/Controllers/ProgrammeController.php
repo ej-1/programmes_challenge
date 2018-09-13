@@ -21,7 +21,6 @@ class ProgrammeController extends Controller
 
     public function index()
     {
-        //
     }
 
     public function show()
@@ -33,7 +32,8 @@ class ProgrammeController extends Controller
     {
         $search = Input::get('search', 'default search');
         $ProgrammeFinder = new ProgrammeFinder();
-        $results = $ProgrammeFinder->findProgrammes("somefile", $search); // add real filepath here
+        $file = '../app/Data/programme_source_data.txt'; // move the file path up somewhere.
+        $results = $ProgrammeFinder->findProgrammes($file, $search);
         return View::make('programmes.query')->with('programmes', $results);        
     }
 }
